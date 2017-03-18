@@ -35,7 +35,8 @@ controllersMod.controller("commentsCtrl", function($scope, $uibModal, commentsFa
                     commentsFactory.editComment($scope.editedCommentText, $scope.editedCommentId).then(function(result) {
                         $uibModalInstance.close(result);
                     },
-                    function (error) { /* TODO: inform user of edit error*/
+                    function (error) {
+                        $uibModalInstance.close(error);
                     });
                 }
 
@@ -53,11 +54,8 @@ controllersMod.controller("commentsCtrl", function($scope, $uibModal, commentsFa
         modalInstance.result.then(function(result) {
             // OK
             if (result.status === 200) { 
-                // Updating the comment in the array by its id
-                var commentIndex = _findObjLocIndex($scope.comments, comment, "id");
-                if (!isNaN(commentIndex)) {
-                    $scope.comments[commentIndex].comment = result.data.comment;
-                }
+                // Updating the comment
+                angular.copy(result.data, comment);
             }
         }, function () {
             // This is just a fallback for rejection of the modal
@@ -77,7 +75,8 @@ controllersMod.controller("commentsCtrl", function($scope, $uibModal, commentsFa
                     commentsFactory.deleteComment(comment).then(function(result) {
                         $uibModalInstance.close(result);
                     },
-                    function (error) { /* TODO: inform user of delete error*/
+                    function (error) {
+                        $uibModalInstance.close(error);
                     });
                 }
 
@@ -120,7 +119,7 @@ controllersMod.controller("commentsCtrl", function($scope, $uibModal, commentsFa
                 }
             }
         }
-        // In case w didn't find the obj index for any reason
+        // In case we didn't find the obj index for any reason
         return undefined;
     }
 });
