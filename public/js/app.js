@@ -1,0 +1,1 @@
+var commentsApp = angular.module("commentsApp", ['ui.bootstrap', 'factoriesMod', 'controllersMod']);

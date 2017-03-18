@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <div class="left">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="modal-title" id="modal-title">Edit</span>
+    </div>
+    <div class="right">
+        <span class="glyphicon glyphicon-remove-circle glyphicon-hover" ng-click="cancel()"></span>
+    </div>
+</div>
+<div class="modal-body" id="modal-body">
+    <textarea name="editTextArea" placeholder="Text" ng-model="editedCommentText">{{editedCommentText}}</textarea>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-defult btn-sm" type="button" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-danger btn-sm" type="button" ng-click="save()">Save</button>
+</div>
