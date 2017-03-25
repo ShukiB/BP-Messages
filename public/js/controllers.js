@@ -5,14 +5,8 @@ controllersMod.controller("commentsCtrl", function($scope, $uibModal, commentsFa
     $scope.laodError = false;
 
     $scope.getComments = function() {
-        commentsFactory.getComments().then(function(data) {
-            $scope.comments = data;
-
-            // Setting tooltip for the entire page
-            // This is being set here since we request the comments after each action
-            $(document).ready(function(){
-                $('[data-toggle="tooltip"]').tooltip();
-            });
+        commentsFactory.getComments().then(function(result) {
+            $scope.comments = result.data;
         },
         function(error) {
             $scope.laodError = true;
